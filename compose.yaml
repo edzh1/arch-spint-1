@@ -1,12 +1,15 @@
+version: "3.5"
 services:
 
   mongo:
-    image: mongo
+#    image: mongo
+    image: arm64v8/mongo:5.0
+    platform: linux/arm64/v8
     restart: always
-    logging:
-      driver: none
+#    logging:
+#      driver: none
     healthcheck:
-      test:  echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      test:  echo 'db.runCommand("ping").ok' | mongosh localhost:27017/mestodb --quiet
       interval: 10s
       timeout: 10s
       retries: 5
